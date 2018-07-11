@@ -99,7 +99,7 @@
 
 	function winner() {
 		var para = document.createElement("p");
-		var node = document.createTextNode("Wow! You won! You're quite lucky, because if you start with $50, that happens only about 17% of the time!");
+		var node = document.createTextNode("Wow! You won! You're quite lucky, because if you start with $50, that happens only about 18% of the time!");
 		para.appendChild(node);
 		var element = document.getElementById("div1");
 		element.appendChild(para);
@@ -115,7 +115,7 @@
 
 	function loser () {
 		var para = document.createElement("p");
-		var node = document.createTextNode("You lost all your money. That's okay. When you start with only $50, that happens about 83% of the time.");
+		var node = document.createTextNode("You lost all your money. That's okay. When you start with only $50, that happens about 82% of the time.");
 		para.appendChild(node);
 		var element = document.getElementById("div1");
 		element.appendChild(para);
@@ -172,7 +172,7 @@
 
 
 	function playmore () {
-		document.getElementById("movingOn").innerHTML = 'Click here for 100 "casino visits" with $50!';	
+		document.getElementById("movingOn").innerHTML = 'Click here to simulate 100 "casino nights" with $50 in your pocket!';	
 	};
 
 	function play100times () {
@@ -205,13 +205,14 @@
 
 		function winner2() {
 			winTimes++;
-			document.getElementById("yo2").innerHTML = "Times you won $50 or more: "+winTimes+"  Times you lost $50: "+lossTimes;
+			document.getElementById("yo2").innerHTML = "Nights you won $50 or more: "+winTimes+" <br/> Nights you lost $50: "+lossTimes+"<br/> Percent of nights with a winning outcome (By winning we mean got to $100 or more and stopped): "+(100*winTimes/(winTimes+lossTimes))+"%";
+			
 		};
 
 		function loser2 () {
 			lossTimes++;
 			console.log("lossTimes", lossTimes)
-			document.getElementById("yo2").innerHTML = "Times you won $50 or more: "+winTimes+"  Times you lost $50: "+lossTimes;
+			document.getElementById("yo2").innerHTML = "Nights you won $50 or more: "+winTimes+" <br/> Nights you lost $50: "+lossTimes+" <br/> Percent of nights with a winning outcome (By winning we mean got to $100 or more and stopped): "+(100*winTimes/(winTimes+lossTimes))+"%";
 		};	
 /*		function graphIt2() {	
 
