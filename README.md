@@ -1,6 +1,6 @@
 # FiveDollarFlip
 
-This website is a demonstration of my favorite probability question. 
+This website is a demonstration of my favorite question from a Georgia Tech probability class.
 
 Here's the game: 
 You pay 5 dollars to play. 
