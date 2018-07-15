@@ -31,7 +31,6 @@
 	  <div id="yo"></div>
 	      <a class="btn btn-primary btn-lg" href="#" role="button" id="movingOn" onclick="play10000times()"></a>
 	  <div id="yo2"></div>
-	  	  <a class="btn btn-primary btn-lg" href="#" role="button" id="goToDemo2" onclick="goToDemo2()"></a>
 
   </div>
 </body>
@@ -44,14 +43,17 @@
 	var winTimes=0, lossTimes=0
 
 	function initialize () {
-		document.getElementById("balance").value=50;
+		document.getElementById("balance").value=1000;
 	};
 
 	function play() {
-	
-		var heads=0, won, wons=0, newBal;
+
+
 		baltemp = document.getElementById("balance").value;
-		console.log("baltemp",baltemp)
+		while (baltemp>4 || baltemp <10000){
+		baltemp = document.getElementById("balance").value;
+		var heads=0, won, wons=0, newBal;
+		console.log("baltemp ", baltemp);
 	    document.getElementById("outcome").innerHTML=null;	
 	    document.getElementById("conclusion").innerHTML=null;	
 
@@ -92,15 +94,19 @@
 		fullgame.push(newBal);
 		gamenumbers.push(j);
 
-		if (newBal>=100) {winner()};
+		if (newBal>=10000) {winner()};
 		if (newBal<=0) {loser()};
 		document.getElementById("balance").value=newBal;
-		if (j>1) {graphIt()}
+		}
+		// END OF WHILE LOOP
+		graphIt();
 	}
+	
+	// END OF PLAY (WHICH PLAYS OUT A WHOLE NIGHT) FUNCTION
 
 	function winner() {
 		var para = document.createElement("p");
-		var node = document.createTextNode("Wow! You won! You're quite lucky, because if you start with $50, that happens only about 18% of the time!");
+		var node = document.createTextNode("When you start with $1000, you almost always win.");
 		para.appendChild(node);
 		var element = document.getElementById("div1");
 		element.appendChild(para);
@@ -116,7 +122,7 @@
 
 	function loser () {
 		var para = document.createElement("p");
-		var node = document.createTextNode("You lost all your money. That's okay. When you start with only $50, that happens about 82% of the time.");
+		var node = document.createTextNode("When you start with $1000, you almost NEVER loose.");
 		para.appendChild(node);
 		var element = document.getElementById("div1");
 		element.appendChild(para);
@@ -173,24 +179,20 @@
 
 
 	function playmore () {
-		document.getElementById("movingOn").innerHTML = 'Click here to simulate 10,000 "casino nights" with $50 in your pocket! (Takes a few seconds)';	
+		document.getElementById("movingOn").innerHTML = 'Click here to simulate 100 "casino nights" with $50 in your pocket!';	
 	};
 
 	function play10000times () {
 
-		for (i=0; i<10000; i++) {
-			baltemp=50	
+		for (i=0; i<100; i++) {
+			baltemp=1000	
 			playfast();
 		}
-		// document.getElementById("conclusion").innerHTML = "";
-		document.getElementById("yo").innerHTML = "";
-		document.getElementById("outcome").innerHTML = "";
-		document.getElementById("account").innerHTML = "";
 	};
 
 		function playfast() {
 		var t=0	
-		for (newBal=50;(newBal>0 && newBal<100);t++) {	
+		for (newBal=1000;(newBal>0 && newBal<10000);t++) {	
 			var heads=0, won, wons=0;
 			for (heads=1 ; Math.random()>=.5 ; heads++) {
 				won = Math.pow(2,(heads-1)); 
@@ -201,7 +203,7 @@
 			fullgame.push(newBal);
 			gamenumbers.push(j);
 			console.log("newBal",newBal, "t",t, "baltemp",baltemp)	
-		if (newBal>=100) {winner2()};
+		if (newBal>=10000) {winner2()};
 		if (newBal<=0) {loser2()};				
 		};
 		}  //End of playfast. 
@@ -210,8 +212,7 @@
 
 		function winner2() {
 			winTimes++;
-			document.getElementById("yo2").innerHTML = "Nights you won $50 or more: "+winTimes+" <br/> Nights you lost $50: "+lossTimes+"<br/> Percent of nights with a winning outcome (By 'winning outcome', we mean got to $100 or more and stopped): "+(100*winTimes/(winTimes+lossTimes))+"%";
-			document.getElementById("goToDemo2").innerHTML = "What if we start with more money?";
+			document.getElementById("yo2").innerHTML = "Nights you won $50 or more: "+winTimes+" <br/> Nights you lost $50: "+lossTimes+"<br/> Percent of nights with a winning outcome (By winning we mean got to $100 or more and stopped): "+(100*winTimes/(winTimes+lossTimes))+"%";
 			
 		};
 
@@ -219,12 +220,7 @@
 			lossTimes++;
 			console.log("lossTimes", lossTimes)
 			document.getElementById("yo2").innerHTML = "Nights you won $50 or more: "+winTimes+" <br/> Nights you lost $50: "+lossTimes+" <br/> Percent of nights with a winning outcome (By winning we mean got to $100 or more and stopped): "+(100*winTimes/(winTimes+lossTimes))+"%";
-			document.getElementById("goToDemo2").innerHTML = "What if we start with more money?";
 		};	
-
-			function goToDemo2() {
-		window.location.assign("demo2.html")
-		}
 /*		function graphIt2() {	
 
 		graphdata = [0,0];
